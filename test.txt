@@ -1,0 +1,27 @@
+pip install gunicorn
+pip install psycopg2
+pip install flask
+pip install flask-sqlalchemy
+pip install pandas
+
+Run this in Solved folder
+python initdb.py
+
+in pet_pals
+flask run
+
+pip freeze > requirements.txt
+
+touch Procfile
+put this in Procfile:
+web: gunicorn pet_pals.app:app
+
+On Heroku, go to the Deploy section of your app's homepage, and follow the steps to deploy the app.
+After creating a new app on Heroku, navigate to Resources:
+
+# DATABASE_URL will contain the database connection string:
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
+# Connects to the database using the app config
+db = SQLAlchemy(app)
+
+heroku run python initdb.py
